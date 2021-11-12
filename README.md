@@ -746,7 +746,17 @@ def default() -> ml_collections.ConfigDict:
 
 [LLVM for Graduate Students](http://www.cs.cornell.edu/~asampson/blog/llvm.html)
 
+[Memory Models Underlying Programming Languages](http://canonical.org/~kragen/memory-models/)
+
+[Compiler Gym](https://github.com/facebookresearch/CompilerGym)
+
 # References 
+
+[2021] [AI Powered Compiler Techniques for DL Code Optimization](https://arxiv.org/pdf/2104.05573.pdf)
+
+[2020] [The Deep Learning Compiler: A Comprehensive Survey](https://arxiv.org/abs/2002.03794)
+
+[2018] [Machine Learning in Compiler Optimization](https://zwang4.github.io/publications/pieee18.pdf)
 
 ## PauliNet
 
