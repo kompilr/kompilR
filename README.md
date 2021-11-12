@@ -28,7 +28,7 @@ Machine Learning for Drug Discovery has [made many strides](https://www.ncbi.nlm
 
 ![Simpsons](images/simpsons.gif)
 
-The protein folding problem consists of three closely related puzzles:
+We used to believe that the protein folding problem is comprised of three closely related puzzles:
 * (a) What is the folding code? 
 * (b) What is the folding mechanism?
 * (c) Can we predict the native structure of a protein from its amino acid sequence? [source](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2443096/)
