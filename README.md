@@ -738,7 +738,13 @@ def default() -> ml_collections.ConfigDict:
  
  > ConfigDict...is a "dict-like" data structure with dot access to nested elements...Supposed to be used as a main way of expressing configurations of experiments and models.
 
+# Resources 
 
+[A Tourists Guide to LLVM](https://blog.regehr.org/archives/1453)
+
+[The Architecture of Open Source Applications: LLVM](http://www.aosabook.org/en/llvm.html) - Chris Laetner
+
+[LLVM for Graduate Students](http://www.cs.cornell.edu/~asampson/blog/llvm.html)
 
 # References 
 
