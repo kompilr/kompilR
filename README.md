@@ -750,6 +750,8 @@ def default() -> ml_collections.ConfigDict:
 
 [Compiler Gym](https://github.com/facebookresearch/CompilerGym)
 
+[Apache TVM](https://tvm.apache.org/) - Machine Learning Compiler Framework
+
 # References 
 
 [2021] [AI Powered Compiler Techniques for DL Code Optimization](https://arxiv.org/pdf/2104.05573.pdf)
