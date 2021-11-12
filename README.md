@@ -17,6 +17,7 @@ or a tiny grass.
 ---
 
 Machine Learning for Drug Discovery has [made many strides](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7577280/) over the last decade. Yet there is a long, long way to go. 
+ 
 
 
 # Protein Folding
@@ -35,7 +36,6 @@ The protein folding problem consists of three closely related puzzles:
 
 ## Data Sources
 
-![Prometheus](prometheus.gif)
 
 [CATH/Gene3D](https://www.cathdb.info/) - 151 Million Protein Domains Classified into 5,481 Superfamilies
 
