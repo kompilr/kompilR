@@ -18,6 +18,7 @@ or a tiny grass.
 
 Machine Learning for Drug Discovery has [made many strides](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7577280/) over the last decade. Yet there is a long, long way to go. 
  
+The way forward is numerical optimization. 
 
 
 # Protein Folding
