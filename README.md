@@ -1,4 +1,4 @@
-`kompilR` is domain specific compilers for dynamic moleculars. 
+`kompilR` == Dynamic Moleculars :electron:
 
 ```
 So let it not look strange 
