@@ -191,3 +191,402 @@ MLIR has no fixed/built-in list of globally known operations (no “intrinsics�
 Intel [Foundry Services FactSheet](https://newsroom.intel.com/wp-content/uploads/sites/11/2021/03/intel-foundry-services-fact-sheet-229940.pdf)
 
 Amazon [EC2 F1 Instances](https://aws.amazon.com/ec2/instance-types/f1/) - FPGA accelerator development and deployment in the cloud
+
+# You Don't Know [Jax](https://jax.readthedocs.io/en/latest/jax-101/01-jax-basics.html)
+
+or maybe you do. either way.
+
+Obviously you know:
+
+* jax arrays are [immutable](https://stackoverflow.com/questions/4828080/how-to-make-an-immutable-object-in-python) 
+
+## High Level Jax 
+
+### Using GRAD to calculate gradiants 
+
+**Derivative of a Squared**: (the derivative of <img src="https://render.githubusercontent.com/render/math?math=x^2"> is always <img src="https://render.githubusercontent.com/render/math?math=2x">)
+
+
+```python
+import jax
+import jax.numpy as jnp
+
+def sum_of_squares(x):
+  return jnp.sum(x**2)
+
+sum_of_squares(6)
+
+>> DeviceArray(36, dtype=int32)
+
+squares_derivative = jax.grad(sum_of_squares)
+x = jnp.asarray([6., 8.])
+print(squares_derivative(x))
+
+>> [12. 16.]
+```
+Jax's version of numpy outputs `DEVICEARRAY` format (which is dtype=int32 rather than Numpys int64). 
+
+Taking the gradiant of the square we end up with: 
+
+ <img src="https://render.githubusercontent.com/render/math?math=[[ 6 * 2] , [ 8 * 2 ]] = [ 12, 16]">
+
+---
+
+**Derivative of a Cubed**:  (the derivative of <img src="https://render.githubusercontent.com/render/math?math=x^2"> is always <img src="https://render.githubusercontent.com/render/math?math=2x">)
+
+```python
+import jax
+import jax.numpy as jnp
+
+def sum_of_cubes(x):
+  return jnp.sum(x**3)
+
+sum_of_cubes(6)
+
+>> DeviceArray(216, dtype=int32)
+
+cubes_derivative = jax.grad(sum_of_cubes)
+x = jnp.asarray([6., 8.])
+print(cubes_derivative(x))
+
+>> [108. 192.]
+```
+
+Taking the gradiant of the cube we end up with: 
+
+ <img src="https://render.githubusercontent.com/render/math?math=[[ 3(6 * 6)] , [ 3( 8 * 8) ]] = [ 108, 192]">
+
+---
+
+**Derivative to the Fourth Power**:  (the derivative of <img src="https://render.githubusercontent.com/render/math?math=x^4"> is always <img src="https://render.githubusercontent.com/render/math?math=4x^3">)
+
+
+```python
+import jax
+import jax.numpy as jnp
+
+def sum_of_fourth(x):
+  return jnp.sum(x**4)
+
+sum_of_fourth(6)
+
+>> DeviceArray(1296, dtype=int32)
+
+fourth_derivative = jax.grad(sum_of_fourth)
+x = jnp.asarray([6., 8.])
+print(fourth_derivative(x))
+
+>> [864. 2048.]
+```
+
+Taking the gradiant to the power of four we end up with: 
+
+ <img src="https://render.githubusercontent.com/render/math?math=[[ 4(6 * 6 * 6)] , [ 4( 8 * 8 * 8) ]] = [ 864, 2048]">
+
+---
+
+**Simple Loss Function** - taking from the documentation how the above can be applied to a simple loss function: 
+
+```python
+def squared_error(x, y):
+  return jnp.sum((x-y)**2)
+
+squared_error(20,10)
+
+>> DeviceArray(100, dtype=int32)
+
+squared_error_derivative = jax.grad(squared_error)
+
+x = jnp.asarray([14., 10., 8.])
+
+y = jnp.asarray([10., 8, 5.])
+
+print(squared_error_derivative(x, y))
+
+>> [8. 4. 6.]
+
+```
+
+Given the arrays we end with:
+
+ <img src="https://render.githubusercontent.com/render/math?math=[2(14 -10), 2(10 - 8), 2(8 - 5) ] = [8, 4, 6]">
+
+
+---
+
+**Cubed Loss Function** - taking from the documentation how the above can be applied to a simple loss function: 
+
+```python
+def cubed_error(x, y):
+  return jnp.sum((x-y)**3)
+
+cubed_error(20,10)
+
+>> DeviceArray(1000, dtype=int32)
+
+cubed_error_derivative = jax.grad(cubed_error)
+
+x = jnp.asarray([14., 10., 8.])
+
+y = jnp.asarray([10., 8, 5.])
+
+print(cubed_error_derivative(x, y))
+
+>> [48. 12. 27.]
+
+```
+Given the arrays we end with:
+
+ <img src="https://render.githubusercontent.com/render/math?math=[3((14 -10)^2)), 3((10 - 8)^2)), 3((8 - 5)^2) ] = [48,  12,  27]">
+ 
+ ---
+ 
+
+Is what is happening in all of these grad examples the type of auto differentiation that generative "derivative evaluations rather than derivative expressions (as in [symbolic differentiation](https://www.cs.utexas.edu/users/novak/asg-symdif.html#:~:text=A%20symbolic%20differentiation%20program%20finds,numeric%20calculations%20based%20on%20formulas.))?
+
+But what is auto differentiation really? It is said to be: 
+
+"a non-standard interpretation of a computer program where this interpretation involves augmenting the standard computation with the calculation of various derivatives." [Automatic Differentiation in Machine Learning: A Survey](https://arxiv.org/pdf/1502.05767.pdf)
+
+It is *"is code augmentation where code is provided for derivatives of your functions free of charge."* [source](https://rlhick.people.wm.edu/posts/mle-autograd.html)
+
+It is seperate from **symbolic differentiation** & **numeric differentiation** 
+
+> We would like to stress that AD as a technical term refers to
+a specific family of techniques that compute derivatives through accumulation of values
+during code execution to generate numerical derivative evaluations rather than derivative
+expressions. [Automatic Differentiation in Machine Learning: A Survey](https://arxiv.org/pdf/1502.05767.pdf)
+
+> In contrast with the effort involved in arranging code as closed-form expressions under the syntactic and semantic constraints of symbolic differentiation, AD can be applied to regular code with minimal
+change, allowing branching, loops, and recursion.  [Automatic Differentiation in Machine Learning: A Survey](https://arxiv.org/pdf/1502.05767.pdf)
+
+It has to be imagined that `jax.grad` works by " keeping track of derivative values as opposed to the resulting
+expressions" given that what it returns is not the formula of the derivation but the result. The result must be derived by automatically taking the input and putting them through the function that is expected by the [chain rule](https://youtu.be/H-ybCx8gt-8). 
+
+
+To have any understanding of how its working we should look at the output of JAXPR:
+
+## JAXPR
+
+> If one wants to understand how JAX works internally, or to make use of the result of JAX tracing, it is useful to understand jaxprs"
+
+Jaxprs are JAX’s internal intermediate representation of programs.
+
+A Jaxpr is a data structure that can be evaluated like a mini functional programming language and thus Jaxprs are a useful intermediate representation for function transformation.
+
+JAXPR's are:
+*  explicitly typed
+*  [functional](https://web.archive.org/web/20131010134641/http://www-formal.stanford.edu/jmc/recursive/recursive.html)
+*  first-order 
+*  in ANF form.
+
+```python
+
+def sum_cubed_error(x, y):
+  return jnp.sum((x-y)**3)
+
+print(jax.make_jaxpr(sum_cubed_error)(20,10))
+
+>> { lambda  ; a b.
+>>    let c = sub a b
+>>    d = integer_pow[ y=3 ] c
+>>    e = convert_element_type[ new_dtype=int32
+>>                          weak_type=False ] d
+>>    f = reduce_sum[ axes=(  ) ] e
+>>    in (f,) }
+```
+
+# [JaxCore](https://github.com/google/jax/blob/b884cb4ce2ca5ad4f0080545e294ce2561b89138/jax/core.py#L694)
+
+```python
+
+import operator
+from operator import attrgetter
+from contextlib import contextmanager
+from collections import namedtuple
+from functools import total_ordering
+import itertools as it
+from weakref import ref
+import threading
+import types
+from typing import (Any, Callable, ClassVar, Dict, Generator,
+                    Iterator, List, NamedTuple, Optional, Sequence, Set, Tuple,
+                    Type, Union, cast, Iterable, Hashable)
+
+import numpy as np
+```
+
+[`Operator`](https://docs.python.org/3/library/operator.html#module-operator) module 'exports a set of **efficient functions corresponding to the intrinsic operators of Python**"
+
+
+[`attrgetter`](https://docs.python.org/3/library/operator.html#operator.attrgetter) returns an attribute or tuple of attributes, useful for fast extractoros such as maps and groupby's. 
+
+---
+
+[`contextlib's`]() [`contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) is a decorator `@contextmanager` for factory functions that can be created without needed to create `__enter__` & `__exit__` dunder methods. 
+
+---
+
+[`collections`](https://docs.python.org/3/library/collections.html) [`namedtuple()`](https://docs.python.org/3/library/collections.html#namedtuple-factory-function-for-tuples-with-named-fields) assign meaning to each position in a tuple - for readability and self-documenting code - allowing ability to access fields by name rather than position index. Documenation exampes:
+
+```python
+
+Nets = namedtuple('Nets',['KD', 'Kyrie', 'Harden'])
+print(Nets)
+>>> <class '__main__.Nets'>
+
+jerseys = Nets(7,11,13)  # instantiate with positional or keyword
+print(jerseys)
+
+>>> Nets(KD=7, Kyrie=11, Harden=13)
+
+>>> jerseys[0] + jerseys[1]             # indexable like the plain tuple 
+>>> 18
+
+x, y, z = jerseys                # unpack like a regular tuple
+print(x, y, z)
+
+>>> (7, 11, 13)
+
+>>> jerseys.KD + jerseys.Harden      # fields also accessible by name
+>>> 20 
+
+```
+
+---
+
+[`functools`](https://docs.python.org/3/library/functools.html) is pretty important in that it allows functions to return other functions - as in decorators like `@cache`. 
+
+`Core` uses [`total_ordering`](https://docs.python.org/3/library/functools.html#functools.total_ordering) to allow a class to define only one rich comparison ordering method and the `__eq__`, and the decorator supplies the other four.
+
+Drawbacks of `@total_ordering`: 
+* creates slower execution
+* mpore complex stack traces for comparison methods 
+* implementing all six comparison methods for the class instead will give a speed boost
+  * `==` : `__eq__`
+  * `!=` : `__ne__`
+  * `<` : `__lt__`
+  * `>` : `__gt__`
+  * `<=` : `__le__`
+  * `>=` : `__ge__`
+
+---
+
+[`itertools`](https://docs.python.org/3/library/itertools.html) creates [iterator](https://docs.python.org/3/glossary.html#term-iterator) building  blocks as a core set of fast memory efficient tools. Similar to [C++ Standard Library](https://www.cplusplus.com/reference/stl/)? 
+
+---
+
+[`weakrefs`](https://docs.python.org/3/library/weakref.html) [`ref`](https://docs.python.org/3/library/weakref.html#weakref.ref) can retreieve an object it is still alive, but returns `None` if it is not. Useful for caches/mappings that have large objects - the object will not be kept alive solely because it appears in the cache/map. Garbage collection can delete the object when dead.
+
+---
+
+[`threading`](https://docs.python.org/3/library/threading.html)
+
+
+![threading](https://media.giphy.com/media/YP9WadrYt8dz2/giphy.gif)
+
+
+## JAX [Primatives](https://github.com/google/jax/blob/b884cb4ce2ca5ad4f0080545e294ce2561b89138/jax/core.py#L244)
+
+JAX comes with an implementation of numpy functions in terms of JAX primitives.
+
+JAX primatives are found in the [`jax.lax`](https://github.com/google/jax/blob/main/jax/_src/lax/lax.py)
+
+## JAX [Tracers](https://github.com/google/jax/blob/b884cb4ce2ca5ad4f0080545e294ce2561b89138/jax/core.py#L464)
+
+## PyTree
+
+# JAX in use: AlphaFold2
+
+AlphaFold2 is Google's state of the art protein structure prediction model.
+
+AF2 predicts 3D coordinates of all atoms of a protein, [using the amino acid sequence and aligned sequences homology.](https://github.com/b0mTrady/awesome-structural-bioinformatics)
+
+![image](https://user-images.githubusercontent.com/64801585/126504747-281b12dd-4157-4d73-a7f2-107c26494f1c.png)
+
+
+
+* PreProcessing
+  * Input Sequence 
+  * Multiple Sequence Alignments
+  * Structural Templates  
+* Transformer (EvoFormer)
+* Recycling
+* Structure Module -> 3D coordinates 
+
+![image](https://user-images.githubusercontent.com/64801585/127316142-126458b5-edf4-4bc0-8aeb-d42a24d01750.png)
+
+![Screenshot from 2021-07-28 07-58-02](https://user-images.githubusercontent.com/64801585/127318851-d3c5f87e-75ba-4632-aa13-7b68eee2f2f8.png)
+
+![Screenshot from 2021-07-28 07-58-54](https://user-images.githubusercontent.com/64801585/127318883-b049f5c5-9415-40b6-9de0-9eac288dcb34.png)
+
+
+
+```python
+
+def softmax_cross_entropy(logits, labels):
+  loss = -jnp.sum(labels * jax.nn.log_softmax(logits), axis=-1)
+  return jnp.asarray(loss)
+  
+```
+If you didn't know jax's [nn.logsoftmax](https://github.com/google/jax/blob/890a41f7191fa468e2f638ba4efb9e32ad26adaa/jax/_src/nn/functions.py#L264) AF2's implemenation would not mean much to you. 
+
+So going down the rabbit hole in Jax's nn we have the softmax function:
+
+  (The `LogSoftmax` function, rescales elements to the range <img src="https://render.githubusercontent.com/render/math?math=(-\infty, 0)">)
+
+
+```python
+def log_softmax(x: Array, axis: Optional[Union[int, Tuple[int, ...]]] = -1) -> Array:  
+  shifted = x - lax.stop_gradient(x.max(axis, keepdims=True))
+  return shifted - jnp.log(jnp.sum(jnp.exp(shifted), axis, keepdims=True))
+  ```
+
+The accepted arguments are: 
+* **x** : input array
+* **axis**: the axis or axes along which the `log_softmax` should be computed. Either an integer or a tuple of integers.
+
+and an array is returned.
+
+Inside this function we go further down the lane to:
+* [`lax.stop_gradient`](https://github.com/google/jax/blob/890a41f7191fa468e2f638ba4efb9e32ad26adaa/jax/_src/lax/lax.py#L1661) - is the identity function, that is, it returns argument `x` unchanged. However, ``stop_gradient`` prevents the flow of
+  gradients during forward or reverse-mode automatic differentiation.
+```python
+def stop_gradient(x):
+  def stop(x):
+    if (dtypes.issubdtype(_dtype(x), np.floating) or
+        dtypes.issubdtype(_dtype(x), np.complexfloating)):
+      return ad_util.stop_gradient_p.bind(x)
+    else:
+      return x  # only bind primitive on inexact dtypes, to avoid some staging
+  return tree_map(stop, x)
+```
+This in turn relies upon [`tree_map`](https://github.com/google/jax/blob/890a41f7191fa468e2f638ba4efb9e32ad26adaa/jax/_src/tree_util.py#L144)
+
+```python 
+def tree_map(f: Callable[..., Any], tree: Any, *rest: Any,
+                    is_leaf: Optional[Callable[[Any], bool]] = None) -> Any:
+  
+  leaves, treedef = tree_flatten(tree, is_leaf)
+  all_leaves = [leaves] + [treedef.flatten_up_to(r) for r in rest]
+  return treedef.unflatten(f(*xs) for xs in zip(*all_leaves))
+```
+
+* `jnp.log`
+* `jnp.sum`
+* `jnp.exp`
+
+# References
+
+(2018) [The Matrix Calculus You Need For Deep Learning](https://arxiv.org/pdf/1802.01528.pdf)
+
+(2018) [The Simple Essence of Automatic Differentiation](http://conal.net/papers/essence-of-ad/essence-of-ad-icfp.pdf)
+
+(2015) [Automatic Differentiation in Machine Learning: A Survey](https://arxiv.org/pdf/1502.05767.pdf)
+
+
+[Automatic Differentiation Lecture Slides](https://www.cs.ubc.ca/~fwood/CS340/lectures/AD1.pdf)
+
+[Gans in Jax](https://github.com/lweitkamp/GANs-JAX)
+
+[Jax MD](https://github.com/google/jax-md)
