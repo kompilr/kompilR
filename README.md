@@ -1,8 +1,6 @@
-#  Domain Specific Compilers for Drug Discovery
+#  Domain Specific Compilers for Drug Discovery :electron:
 
 ![The First Compiler](images/holy_mountain.gif)
-
-`kompilR` == Dynamic Moleculars :electron:
 
 ```
 So let it not look strange 
