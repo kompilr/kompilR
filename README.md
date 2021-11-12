@@ -14,6 +14,8 @@ or a tiny grass.
 
 > Kant, *Natural History and the Theory of Heaven*, 1755
 
+Machine Learning for Drug Discovery has [made many strides](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7577280/) over the last ten years. Yet there is a long, long way to go. 
+
 # Protein Folding
 
  > Structure-function relationships are the fundamental object of knowledge in protein chemistry; they allow us to rationally design drugs, engineer proteins with new functions, and understand why mutations cause disease. [- On The Origin of Proteins](https://www.chemistryworld.com/features/on-the-origin-of-proteins/3004719.article)
