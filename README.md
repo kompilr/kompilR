@@ -67,18 +67,10 @@ MLIR is a Static Single Assignment form (SSA) compiler:
 
 MLIR introduces concepts from the [polytype model](https://en.wikipedia.org/wiki/Polytope_model) for loop optimization.
 
-```mermaid
-graph LR
-A(Region) --> B{RegionKindInterface}
-B --> C{{SSACFG Region}} -- Basic Block --> E(Block)
-B --> D{{Graph Region}} --> E
-```
-
 (In compiler construction, a [basic block](https://en.wikipedia.org/wiki/Basic_block) is a straight-line code sequence with no branches in except to the entry and no branches out except at the exit)
 
 MLIR has no fixed/built-in list of globally known operations (no “intrinsics”)
 
-![Screen_Shot_2021-06-25_at_06.43.45](uploads/0f50fb0d52f452db76d02d5467c59ca9/Screen_Shot_2021-06-25_at_06.43.45.png)
 
 ## LLVM
 
