@@ -1,3 +1,7 @@
+#  Domain Specific Compilers for Drug Discovery
+
+![The First Compiler](images/holy_mountain.gif)
+
 `kompilR` == Dynamic Moleculars :electron:
 
 ```
@@ -11,11 +15,6 @@ or a tiny grass.
 
 Immanuel Kant, Natural History and the Theory of Heaven, 1755
 ``` 
-
-#  Domain Specific Compilers for Drug Discovery
-
-![The First Compiler](images/holy_mountain.gif)
-
 
 # Protein Folding
 
