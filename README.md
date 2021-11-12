@@ -11,9 +11,9 @@ or a tiny grass.
 Immanuel Kant, Natural History and the Theory of Heaven, 1755
 ``` 
 
-![The First Compiler](images/holy_mountain.gif)
+#  Domain Specific Compilers for Drug Discovery
 
-# kompilR: Domain Specific Compilers for Drug Discovery
+![The First Compiler](images/holy_mountain.gif)
 
 
 # Protein Folding
