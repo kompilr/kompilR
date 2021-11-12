@@ -11,7 +11,7 @@ or a tiny grass.
 Immanuel Kant, Natural History and the Theory of Heaven, 1755
 ``` 
 
-![The First Compiler](images/2001.gif)
+![The First Compiler](images/holy_mountain.gif)
 
 # kompilR: Domain Specific Compilers for Drug Discovery
 
