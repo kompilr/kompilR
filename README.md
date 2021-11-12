@@ -8,7 +8,7 @@ than to interpret in mechanical terms
 the origination of just a single caterpillar
 or a tiny grass.
 
-- Immanuel Kant, *Natural History and the Theory of Heaven*, 1755
+Immanuel Kant, Natural History and the Theory of Heaven, 1755
 ``` 
 
 
