@@ -1,3 +1,4 @@
+`kompilR` is domain specific compilers for dynamic moleculars. 
 
 ```
 So let it not look strange 
