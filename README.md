@@ -756,13 +756,13 @@ def default() -> ml_collections.ConfigDict:
 
 # References
 
-[2021] [AI Powered Compiler Techniques for DL Code Optimization](https://arxiv.org/pdf/2104.05573.pdf)
+(2021) [AI Powered Compiler Techniques for DL Code Optimization](https://arxiv.org/pdf/2104.05573.pdf)
 
 (2021) [A MLIR Dialect for Quantum Assembly Languages](https://arxiv.org/pdf/2101.11365.pdf)
 
 (2021) [Ten Lessons From Three Generations Shaped Google’s TPUv4i](https://conferences.computer.org/iscapub/pdfs/ISCA2021-4ghucdBnCWYB7ES2Pe4YdT/333300a001/333300a001.pdf)
 
-[2020] [The Deep Learning Compiler: A Comprehensive Survey](https://arxiv.org/abs/2002.03794)
+(2020) [The Deep Learning Compiler: A Comprehensive Survey](https://arxiv.org/abs/2002.03794)
 
 (2020) ["Ab-Initio Solution of the Many-Electron Schroedinger Equation with Deep Neural Networks"](https://arxiv.org/pdf/1909.02487.pdf) - FermiNet
 
@@ -778,7 +778,7 @@ def default() -> ml_collections.ConfigDict:
 
 (2019) [Quantum Entanglement in Deep Learning Architectures](https://arxiv.org/pdf/1803.09780.pdf)
 
-[2018] [Machine Learning in Compiler Optimization](https://zwang4.github.io/publications/pieee18.pdf)
+(2018) [Machine Learning in Compiler Optimization](https://zwang4.github.io/publications/pieee18.pdf)
 
 (2018) [The Matrix Calculus You Need For Deep Learning](https://arxiv.org/pdf/1802.01528.pdf)
 
