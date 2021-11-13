@@ -762,6 +762,8 @@ def default() -> ml_collections.ConfigDict:
 
 # References
 
+(2021) [High Througput Virtual Laboratory For Drug Discovery Using Massive Datasets](https://github.com/kompilr/kompilR/blob/main/papers/2021_high-throughput_virtual_laboratory_for_drug_discovery_using_massive_datasets.pdf)
+
 (2021) [AI Powered Compiler Techniques for DL Code Optimization](https://arxiv.org/pdf/2104.05573.pdf)
 
 (2021) [A MLIR Dialect for Quantum Assembly Languages](https://arxiv.org/pdf/2101.11365.pdf)
