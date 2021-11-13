@@ -762,7 +762,7 @@ def default() -> ml_collections.ConfigDict:
 
 # Companies
 
-[Acellera](https://www.acellera.com/) - Hardware Software Molecular Dynamics
+[Acellera](https://www.acellera.com/) - Hardware/Software Molecular Dynamics
 
 [Cerebras](https://cerebras.net/industries/health-and-pharma/)
 
