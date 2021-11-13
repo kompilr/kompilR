@@ -776,7 +776,7 @@ def default() -> ml_collections.ConfigDict:
 
 [**ATOM**](https://atomscience.org/) - *'Transforming Drug Discovery'* - HPC
 
-[COBRE Center for Targeted Therapeutics] (https://sc.edu/study/colleges_schools/pharmacy/centers/cobre_center_for_targeted_therapeutics/index.php) - University of South Carolina
+[COBRE Center for Targeted Therapeutics](https://sc.edu/study/colleges_schools/pharmacy/centers/cobre_center_for_targeted_therapeutics/index.php) - University of South Carolina
 
 
 # References
