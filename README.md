@@ -756,6 +756,8 @@ def default() -> ml_collections.ConfigDict:
 
 [Dive Into Deep Learning Compiler](https://tvm.d2l.ai/index.html)
 
+[Nvidia NVCC Compiler](https://developer.nvidia.com/cuda-llvm-compiler)
+
 # References
 
 (2021) [AI Powered Compiler Techniques for DL Code Optimization](https://arxiv.org/pdf/2104.05573.pdf)
