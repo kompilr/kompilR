@@ -762,6 +762,8 @@ def default() -> ml_collections.ConfigDict:
 
 (2021) [Ten Lessons From Three Generations Shaped Google’s TPUv4i](https://conferences.computer.org/iscapub/pdfs/ISCA2021-4ghucdBnCWYB7ES2Pe4YdT/333300a001/333300a001.pdf)
 
+(2021) [Cortex: A Compiler for Recursive Deep Learning Models](https://arxiv.org/pdf/2011.01383.pdf)
+
 (2020) [The Deep Learning Compiler: A Comprehensive Survey](https://arxiv.org/abs/2002.03794)
 
 (2020) ["Ab-Initio Solution of the Many-Electron Schroedinger Equation with Deep Neural Networks"](https://arxiv.org/pdf/1909.02487.pdf) - FermiNet
