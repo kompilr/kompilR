@@ -778,6 +778,8 @@ def default() -> ml_collections.ConfigDict:
 
 (2019) [Quantum Entanglement in Deep Learning Architectures](https://arxiv.org/pdf/1803.09780.pdf)
 
+(2019) [Relay: A High-Level Compiler for Deep Learning](https://arxiv.org/pdf/1904.08368.pdf)
+
 (2018) [Machine Learning in Compiler Optimization](https://zwang4.github.io/publications/pieee18.pdf)
 
 (2018) [The Matrix Calculus You Need For Deep Learning](https://arxiv.org/pdf/1802.01528.pdf)
