@@ -752,6 +752,8 @@ def default() -> ml_collections.ConfigDict:
 
 [Apache TVM](https://tvm.apache.org/) - Machine Learning Compiler Framework
 
+[Tiramisu Compiler](http://tiramisu-compiler.org/)
+
 # References 
 
 [2021] [AI Powered Compiler Techniques for DL Code Optimization](https://arxiv.org/pdf/2104.05573.pdf)
