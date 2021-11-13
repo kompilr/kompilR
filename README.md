@@ -760,6 +760,23 @@ def default() -> ml_collections.ConfigDict:
 
 [Halide](https://halide-lang.org/)
 
+# Companies
+
+[Acellera](https://www.acellera.com/) - Hardware Software Molecular Dynamics
+
+[Cerebras](https://cerebras.net/industries/health-and-pharma/)
+
+[GraphCore](https://www.graphcore.ai/healthcare)
+
+[GSI Technology](https://www.gsitechnology.com/Hardware-Accelerated-Search-for-Drug-Discovery) - Molecular Similarity
+
+[Pharmacelera](https://new.pharmacelera.com/)
+
+# Research Groups
+
+[ATOM](https://atomscience.org/) - *'Transforming Drug Discovery'* - HPC
+
+
 # References
 
 (2021) [High Througput Virtual Laboratory For Drug Discovery Using Massive Datasets](https://github.com/kompilr/kompilR/blob/main/papers/2021_high-throughput_virtual_laboratory_for_drug_discovery_using_massive_datasets.pdf)
