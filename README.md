@@ -754,6 +754,8 @@ def default() -> ml_collections.ConfigDict:
 
 [Tiramisu Compiler](http://tiramisu-compiler.org/)
 
+[Dive Into Deep Learning Compiler](https://tvm.d2l.ai/index.html)
+
 # References
 
 (2021) [AI Powered Compiler Techniques for DL Code Optimization](https://arxiv.org/pdf/2104.05573.pdf)
