@@ -758,6 +758,8 @@ def default() -> ml_collections.ConfigDict:
 
 [Nvidia NVCC Compiler](https://developer.nvidia.com/cuda-llvm-compiler)
 
+[Halide](https://halide-lang.org/)
+
 # References
 
 (2021) [AI Powered Compiler Techniques for DL Code Optimization](https://arxiv.org/pdf/2104.05573.pdf)
